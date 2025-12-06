@@ -2,26 +2,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Recuperar Contraseña</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .volver {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .volver:hover {
+            background: #0056b3;
+        }
+
+        .contenedor {
+            width: 350px;
+            margin: 100px auto;
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1f7e33;
+        }
+
+        .mensaje {
+            color: #d00;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="login-container">
+<!-- BOTÓN VOLVER -->
+<a class="volver" href="login.jsp">Volver</a>
+
+<div class="contenedor">
     <h2>Recuperar Contraseña</h2>
 
-    <form action="RecuperarClaveServlet" method="post">
-        <input type="text" name="usuario" placeholder="Ingrese su usuario" required><br>
-        <button type="submit">Recuperar contraseña</button>
+    <form action="RecuperarServlet" method="post">
+        <input type="text" name="usuario" placeholder="Ingrese su usuario" required>
+        <button type="submit">Recuperar Contraseña</button>
     </form>
 
     <% if (request.getAttribute("mensaje") != null) { %>
-        <p style="color:green"><%= request.getAttribute("mensaje") %></p>
-    <% } %>
-
-    <% if (request.getAttribute("error") != null) { %>
-        <p style="color:red"><%= request.getAttribute("error") %></p>
+        <p class="mensaje"><%= request.getAttribute("mensaje") %></p>
     <% } %>
 </div>
 

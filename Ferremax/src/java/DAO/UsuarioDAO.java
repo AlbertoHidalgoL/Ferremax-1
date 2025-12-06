@@ -27,24 +27,23 @@ public class UsuarioDAO {
 
     // MÉTODO NUEVO PARA RECUPERAR CONTRASEÑA
     public String obtenerClave(String usuario) {
-        String clave = null;
-        String sql = "SELECT clave FROM usuarios WHERE usuario = ?";
+    String sql = "SELECT clave FROM usuarios WHERE usuario=?";
 
-        try (Connection con = Conexion.getConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = Conexion.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, usuario);
+        ps.setString(1, usuario);
+        ResultSet rs = ps.executeQuery();
 
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                clave = rs.getString("clave");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (rs.next()) {
+            return rs.getString("clave");
         }
+        return null;
 
-        return clave;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+}
+
 }
